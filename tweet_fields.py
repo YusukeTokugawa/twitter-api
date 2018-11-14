@@ -5,6 +5,7 @@ Created on Nov 13, 2018
 @author: Yusuke_Tokugawa
 '''
 import dataclasses
+from typing import List
 
 @dataclasses.dataclass
 class TweetFields:
