@@ -20,7 +20,7 @@ class TestController(unittest.TestCase):
         assert response.status_code == 200
         assert response.headers['Content-Type'] == 'application/json'
         content_body_dict = json.loads(response.data)
-        assert content_body_dict[0]['hashtags']==["#test"]
+        assert "#test" in content_body_dict[0]['hashtags']
         assert len(content_body_dict) == 2
 
 
