@@ -15,3 +15,5 @@
 2. In a new terminal, send following request:
  * `curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:5000/hashtags/Python?limit=40`
  * `curl -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:5000/users/twitter?limit=20`
+ 
+ You can decide search condition by changing `Python`, `twitter` and `limit number` in URL
