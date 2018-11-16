@@ -26,7 +26,7 @@ def get_user_tweets(user_name):
 
 if __name__ == '__main__':
     get_tweets = GetTweets()
-    app.run("localhost", debug=True)
+    app.run("localhost")
 
 #for test script
 if __name__== 'controller':
