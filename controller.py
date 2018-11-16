@@ -10,6 +10,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 app.config['JSON_AS_ASCII'] = False
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @app.route('/hashtags/<hashtag>', methods=['GET'])
 def get_tweets_by_hashtags(hashtag):

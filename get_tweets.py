@@ -4,7 +4,6 @@ Created on Nov 13, 2018
 
 @author: Yusuke_Tokugawa
 '''
-from tweet_fields import TweetFields
 from data_formatter import DataFormatter
 from bs4 import BeautifulSoup
 import random
@@ -52,21 +51,7 @@ class GetTweets:
             tweet_blocks = soup.select('.tweet')
             for tweet_block in tweet_blocks:
                 if(i < limit):
-                    fullname = tweet_block.select('.fullname')[0].text
-                    href = tweet_block.find('a', 'account-group js-account-group js-action-profile js-user-profile-link js-nav')['href']
-                    id = int(tweet_block.find('a', 'account-group js-account-group js-action-profile js-user-profile-link js-nav')['data-user-id'])
-                    date = tweet_block.find('a', 'tweet-timestamp js-permalink js-nav js-tooltip')['title']
-                    body_hashtags = tweet_block.find_all('a', 'twitter-hashtag pretty-link js-nav')
-                    hashtags = []
-                    for body_hashtag in body_hashtags:
-                        hashtags.append('#'+body_hashtag.find('b').text)
-                    likes = int(tweet_block.find('span', 'ProfileTweet-action--favorite u-hiddenVisually').find('span', 'ProfileTweet-actionCount')['data-tweet-stat-count'] or '0')
-                    replies = int(tweet_block.find('span', 'ProfileTweet-action--reply u-hiddenVisually').find('span', 'ProfileTweet-actionCount')['data-tweet-stat-count'] or '0')
-                    retweets = int(tweet_block.find('span', 'ProfileTweet-action--retweet u-hiddenVisually').find('span', 'ProfileTweet-actionCount')['data-tweet-stat-count'] or '0')
-                    text = tweet_block.select('.tweet-text')[0].text
-                    one_tweet_data = TweetFields(fullname, href, id, date, hashtags, likes, replies, retweets, text)
-                    dict_one_tweet_data= data_formatter.convert_to_dict(one_tweet_data)
-                    dict_tweets_list.append(dict_one_tweet_data)
+                    dict_tweets_list.append(data_formatter.get_dict_one_tweet_data(tweet_block))
                     i+=1
                 else:
                     break
