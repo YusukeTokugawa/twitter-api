@@ -44,6 +44,8 @@ class GetTweets:
             else:
                 base_url = url.format(q=query,pos=next_position)
             url_data = requests.get(base_url, headers=self.HEADER)
+            if url_data.status_code != 200:
+                break
             content = json.loads(url_data.text)
             next_position = content['min_position']
             html_data = content['items_html']
@@ -55,6 +57,8 @@ class GetTweets:
                     i+=1
                 else:
                     break
+            if content['has_more_items'] == False:
+                break
         return dict_tweets_list
 
     def get_tweets_by_hashtags(self, hashtag, limit):
